@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_inicio"
+            android:icon="@drawable/inicioicono"
+            android:title="@string/menu_inicio"
+            />
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/user_white"
+            android:title="@string/menu_mi_perfil" />
+        <item
+            android:id="@+id/nav_mis_creditos"
+            android:icon="@drawable/mis_creditos_icono"
+            android:title="@string/menu_mis_creditos" />
+        <item
+            android:id="@+id/nav_mis_reservas"
+            android:icon="@drawable/calendario_blanco"
+            android:title="@string/menu_mis_reservas" />
+        <item
+            android:id="@+id/nav_nueva_reserva"
+            android:icon="@drawable/nueva_reserva"
+            android:title="@string/menu_nueva_reserva" />
+        <item
+            android:id="@+id/nav_cerrar_sesion"
+            android:icon="@drawable/cerrar_sesion_icono"
+            android:title="@string/menu_cerrar_sesion" />
+    </group>
+</menu>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_inicio">
+
+
+    <fragment
+        android:id="@+id/nav_inicio"
+        android:name="com.gabrielt.f21.ui.inicio.InicioFragment"
+        android:label="@string/menu_inicio"
+        tools:layout="@layout/fragment_inicio" />
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.gabrielt.f21.ui.perfil.PerfilFragment"
+        android:label="@string/menu_mi_perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_nav_perfil_to_modificarPasswordFragment"
+            app:destination="@id/nav_modificar_pass" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_mis_creditos"
+        android:name="com.gabrielt.f21.ui.miscreditos.MisCreditosFragment"
+        android:label="@string/menu_mis_creditos"
+        tools:layout="@layout/fragment_mis_creditos" />
+    <fragment
+        android:id="@+id/nav_mis_reservas"
+        android:name="com.gabrielt.f21.ui.misreservas.MisReservasFragment"
+        android:label="@string/menu_mis_reservas"
+        tools:layout="@layout/fragment_mis_reservas" />
+    <fragment
+        android:id="@+id/nav_nueva_reserva"
+        android:name="com.gabrielt.f21.ui.nuevareserva.NuevaReservaFragment"
+        android:label="@string/menu_nueva_reserva"
+        tools:layout="@layout/fragment_nueva_reserva" />
+    <fragment
+        android:id="@+id/nav_cerrar_sesion"
+        android:name="com.gabrielt.f21.ui.cerrarsesion.CerrarSesionFragment"
+        android:label="@string/menu_cerrar_sesion"
+        tools:layout="@layout/fragment_cerrar_sesion" />
+    <fragment
+        android:id="@+id/nav_modificar_pass"
+        android:name="com.gabrielt.f21.ui.modificarpassword.ModificarPasswordFragment"
+        android:label="fragment_modificar_password"
+        tools:layout="@layout/fragment_modificar_password" >
+        <action
+            android:id="@+id/action_modificarPasswordFragment_to_nav_perfil"
+            app:destination="@id/nav_perfil" />
+    </fragment>
+    <activity
+        android:id="@+id/iniciarSesionActivity"
+        android:name="com.gabrielt.f21.ui.iniciarsesion.IniciarSesionActivity"
+        android:label="activity_iniciar_sesion"
+        tools:layout="@layout/activity_iniciar_sesion" />
+    <activity
+        android:id="@+id/restablecerPasswordActivity"
+        android:name="com.gabrielt.f21.ui.restablecerpassword.RestablecerPasswordActivity"
+        android:label="activity_restablecer_password"
+        tools:layout="@layout/activity_restablecer_password" />
+    <activity
+        android:id="@+id/registrarseActivity"
+        android:name="com.gabrielt.f21.ui.registrarse.RegistrarseActivity"
+        android:label="RegistrarseActivity" />
+
+</navigation>
