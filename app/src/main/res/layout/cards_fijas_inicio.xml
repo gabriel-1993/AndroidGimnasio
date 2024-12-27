@@ -50,19 +50,19 @@
 
                 <TextView
                     android:id="@+id/tvClasesRestantesInicio"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="10 clases"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tvDiasVencimientoCreditosInicio"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Restan 5 días"
                     android:textColor="@color/amarillo"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -113,9 +113,9 @@
                     android:id="@+id/tvProximaReserva"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sin reservas"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

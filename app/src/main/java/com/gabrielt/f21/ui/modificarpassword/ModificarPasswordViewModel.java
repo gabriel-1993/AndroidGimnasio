@@ -17,6 +17,8 @@ public class ModificarPasswordViewModel extends AndroidViewModel {
 
     private MutableLiveData<String> mMsjToast;
 
+    private MutableLiveData<Boolean> mPassModificadoOk;
+
     public ModificarPasswordViewModel(@NonNull Application application) {
         super(application);
     }
@@ -28,7 +30,12 @@ public class ModificarPasswordViewModel extends AndroidViewModel {
         return mMsjToast;
     }
 
-
+    public MutableLiveData<Boolean> getmPassModificadoOk() {
+        if(mPassModificadoOk == null){
+            mPassModificadoOk = new MutableLiveData<Boolean>();
+        }
+        return mPassModificadoOk;
+    }
 
     public void cambiarClave(String token, String claveActual, String nuevaClave, String repetirClave) {
 
@@ -67,6 +74,7 @@ public class ModificarPasswordViewModel extends AndroidViewModel {
                 if (response.isSuccessful()) {
                     // Contraseña cambiada correctamente
                     mMsjToast.postValue("Contraseña modificada con éxito.");
+                    mPassModificadoOk.postValue(true);
                 } else {
                     // Error en la respuesta
                     //resultMessage.postValue("Error al cambiar la contraseña: " + response.message());

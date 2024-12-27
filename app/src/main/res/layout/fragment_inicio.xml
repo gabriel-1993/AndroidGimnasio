@@ -20,7 +20,7 @@
 
     <!-- RecyclerView para datos dinámicos -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rv_novedaes_inicio"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scrollbars="vertical"

@@ -21,6 +21,7 @@ import com.gabrielt.f21.model.MisReservasView;
 import com.gabrielt.f21.ui.miscreditos.MisCreditosAdapter;
 import com.gabrielt.f21.ui.miscreditos.MisCreditosViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MisReservasFragment extends Fragment {
@@ -52,12 +53,12 @@ public class MisReservasFragment extends Fragment {
             }
         });
 
-
         // Llamar al método para recuperar misreservas
         mViewModel.obtenerMisReservas();
 
         return root;
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

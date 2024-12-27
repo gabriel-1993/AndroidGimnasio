@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.gabrielt.f21.R;
 import com.gabrielt.f21.databinding.FragmentModificarPasswordBinding;
 import com.gabrielt.f21.request.ApiClient;
@@ -36,10 +38,29 @@ public class ModificarPasswordFragment extends Fragment {
         View view = binding.getRoot();
         mViewModel = new ViewModelProvider(this).get(ModificarPasswordViewModel.class);
 
+        // Usar Glide para cargar la imagen redondeada
+        Glide.with(this)
+                .load(R.drawable.f21) //archivo en drawable
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .circleCrop()
+                .into(binding.imageViewModificarPassword);
+
+
+
         mViewModel.getmMsjToast().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String msj) {
                 Toast.makeText(requireContext(), msj, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        mViewModel.getmPassModificadoOk().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                binding.etPassActual.setText("");
+                binding.etConfirmarPass.setText("");
+                binding.etPassNueva.setText("");
+
             }
         });
 
@@ -52,7 +73,6 @@ public class ModificarPasswordFragment extends Fragment {
                 String repetirClave = binding.etConfirmarPass.getText().toString().trim();
 
                 String token = ApiClient.leer(getContext());
-
                 mViewModel.cambiarClave(token, claveActual, nuevaClave, repetirClave);
             }
         });

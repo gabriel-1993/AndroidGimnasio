@@ -8,15 +8,14 @@
     tools:context=".ui.iniciarsesion.IniciarSesionActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv_iniciar_sesion"
         android:layout_width="155dp"
         android:layout_height="158dp"
         app:layout_constraintBottom_toTopOf="@+id/etUsuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.786"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:layout_constraintVertical_bias="0.786" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -52,7 +51,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_pass_login"
             android:layout_width="match_parent"
-            android:layout_height="51dp" />
+            android:layout_height="51dp"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -90,60 +90,32 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginBottom="12dp"
-        android:text="O"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
+        android:layout_marginStart="72dp"
         android:text="¿No tienes una cuenta?"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnRegistrate"
-        app:layout_constraintVertical_bias="0.142" />
+        app:layout_constraintVertical_bias="0.016" />
 
     <TextView
         android:id="@+id/btnRegistrate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="120dp"
         android:clickable="true"
         android:focusable="true"
         android:text="Regístrate"
         android:textColor="@color/amarillo"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.092"
-        app:layout_constraintStart_toEndOf="@+id/textView8" />
-
-    <Button
-        android:id="@+id/button4"
-        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="96dp"
-        android:width="320dp"
-        android:text="Continuar con google"
-        android:textSize="18sp"
-        app:cornerRadius="10dp"
-        app:icon="@drawable/continuar_con_google"
-        app:iconGravity="textStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toEndOf="@+id/textView8" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

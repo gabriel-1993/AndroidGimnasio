@@ -12,6 +12,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.gabrielt.f21.R;
 import com.gabrielt.f21.databinding.ActivityIniciarSesionBinding;
 import com.gabrielt.f21.databinding.ActivityRegistrarseBinding;
@@ -30,6 +32,14 @@ public class RegistrarseActivity extends AppCompatActivity {
         binding = ActivityRegistrarseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         vm = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(RegistrarseViewModel.class);
+
+        // Usar Glide para cargar la imagen redondeada
+        Glide.with(this)
+                .load(R.drawable.f21) //archivo en drawable
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .circleCrop()
+                .into(binding.ivRegistrarseLogo);
+
 
         binding.etRegistrarseFechaNacimiento.setOnClickListener(new View.OnClickListener() {
             @Override

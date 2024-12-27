@@ -43,6 +43,9 @@ public class MisReservasViewModel extends AndroidViewModel {
     }
 
 
+
+
+
     public void obtenerMisReservas() {
         // Recupera el token de la sesión
         String stringToken = "Bearer "+ApiClient.leer(context);
@@ -76,13 +79,19 @@ public class MisReservasViewModel extends AndroidViewModel {
                     Collections.reverse(listaReservas);
 
                     // Asignamos la lista ordenada al LiveData
-                    mMisReservas.postValue(respuesta);  // Aquí ya se actualiza el LiveData con la lista ordenada
+                    mMisReservas.postValue(respuesta);
+                } else if (response.code() == 404) {
+                    // Manejar código 404 cuando no se encuentran reservas
+                    MisReservasView respuestaVacia = new MisReservasView();
+                    respuestaVacia.setReservas(new ArrayList<>()); // Lista vacía si no se encuentran reservas
+                    mMisReservas.postValue(respuestaVacia);
+
                 } else {
                     Log.d("SALIDA", "Error en la respuesta: " + response.message());
                     // Manejo de errores específicos
                     if (response.code() == 401) {
                         Toast.makeText(context, "No autorizado. Verifica tu token.", Toast.LENGTH_SHORT).show();
-                    } else {
+                    }else {
                         Toast.makeText(context, "Error de respuesta API: " + response.message(), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -95,6 +104,8 @@ public class MisReservasViewModel extends AndroidViewModel {
                 Toast.makeText(context, "Error de conexión con la API", Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 
 }

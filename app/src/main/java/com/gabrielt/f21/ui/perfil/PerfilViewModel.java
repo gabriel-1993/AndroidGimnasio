@@ -272,12 +272,13 @@ public class PerfilViewModel extends AndroidViewModel {
             }
 
             // Validación de Email (patrón simple para correo electrónico válido)
-            if (!email.matches("^[a-zA-Z0-9._-]+@[a-zA-Z]+\\\\.[a-zA-Z]{2,3}$\n")) {
+            if (!email.matches("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
                 mMsjToast.setValue("Email: Introduzca un correo electrónico válido.");
                 return;
             }
 
-             Call<String> call = ApiClient.getApiF21().modificarPerfil("Bearer " + ApiClient.leer(context), fechaNacimientoISO8601, nombre, apellido, telefono, email);
+
+        Call<String> call = ApiClient.getApiF21().modificarPerfil("Bearer " + ApiClient.leer(context), fechaNacimientoISO8601, nombre, apellido, telefono, email);
 
             call.enqueue(new Callback<String>() {
                 @Override

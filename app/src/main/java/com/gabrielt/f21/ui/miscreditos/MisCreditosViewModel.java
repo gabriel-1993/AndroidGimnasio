@@ -11,6 +11,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.gabrielt.f21.model.CuotaActualView;
 import com.gabrielt.f21.model.MisCreditosView;
 import com.gabrielt.f21.model.Usuario;
 import com.gabrielt.f21.request.ApiClient;
@@ -42,7 +43,6 @@ public class MisCreditosViewModel extends AndroidViewModel {
 
     public void obtenerMisCreditos() {
 
-        List<MisCreditosView> listaEjemplo = new ArrayList<>();
         Call<MisCreditosView> misCreditosCall = ApiClient.getApiF21().misCreditos("Bearer "+ApiClient.leer(context));
 
         misCreditosCall.enqueue(new Callback<MisCreditosView>() {
@@ -56,7 +56,6 @@ public class MisCreditosViewModel extends AndroidViewModel {
                         try {
                             String fechaCredito1 = credito1.getFechaPago();
                             String fechaCredito2 = credito2.getFechaPago();
-
                             // Comparar las fechas
                             return fechaCredito1.compareTo(fechaCredito2);
                         } catch (Exception e) {
@@ -64,13 +63,16 @@ public class MisCreditosViewModel extends AndroidViewModel {
                             return 0; // Si hay un error en el parseo, no se ordena
                         }
                     });
-
                     // Invertir el orden para que las fechas. Mas recientes arriba
                     Collections.reverse(listaCuotas);
-
                     // Ahora asignamos la lista ordenada e invertida al LiveData
                     mMisCreditos.postValue(response.body());
-
+                }  else if (response.code() == 404) {
+                    // Manejar código 404 cuando no se encuentran créditos
+                    MisCreditosView respuestaVacia = new MisCreditosView();
+                    respuestaVacia.setCuotas(new ArrayList<>()); // Lista vacía si no se encuentran créditos
+                    respuestaVacia.setMensaje("No hay créditos disponibles.");
+                    mMisCreditos.postValue(respuestaVacia);
                 } else {
                     Log.d("SALIDA", "Error en la respuesta: " + response.message());
                     if (response.code() == 401) {
@@ -89,5 +91,7 @@ public class MisCreditosViewModel extends AndroidViewModel {
 
 
     }
+
+
 
 }

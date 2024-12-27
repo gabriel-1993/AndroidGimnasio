@@ -36,15 +36,10 @@
         android:label="@string/menu_nueva_reserva"
         tools:layout="@layout/fragment_nueva_reserva" />
     <fragment
-        android:id="@+id/nav_cerrar_sesion"
-        android:name="com.gabrielt.f21.ui.cerrarsesion.CerrarSesionFragment"
-        android:label="@string/menu_cerrar_sesion"
-        tools:layout="@layout/fragment_cerrar_sesion" />
-    <fragment
         android:id="@+id/nav_modificar_pass"
         android:name="com.gabrielt.f21.ui.modificarpassword.ModificarPasswordFragment"
-        android:label="fragment_modificar_password"
-        tools:layout="@layout/fragment_modificar_password" >
+        android:label="Modificar Password"
+        tools:layout="@layout/fragment_modificar_password">
         <action
             android:id="@+id/action_modificarPasswordFragment_to_nav_perfil"
             app:destination="@id/nav_perfil" />

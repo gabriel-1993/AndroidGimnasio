@@ -1,94 +1,115 @@
 package com.gabrielt.f21.model;
 
-import java.util.Date;
+import java.util.List;
 
+//MODEL PARA MOSTRAR LA LISTA DE NUEVA RESERVA
 public class NuevaReservaView {
 
-    //clase_horario id
-     private int id;
+    private String mensaje;
+    //lista con todas las clases para reservar
+    private List<Reserva> claseHorarios;
 
-    //clase descripcion: funcional,zumba,etc
-    private String descripcion;
-
-    private int max_participantes;
-    private String dia;
-    private String hora;
-    private String fecha;
-    private boolean estado;
-    private boolean cerrado;
-
-    public NuevaReservaView(int id, String descripcion, int max_participantes, String dia, String hora, String fecha, boolean estado, boolean cerrado) {
-        this.id = id;
-        this.descripcion = descripcion;
-        this.max_participantes = max_participantes;
-        this.dia = dia;
-        this.hora = hora;
-        this.fecha = fecha;
-        this.estado = estado;
-        this.cerrado = cerrado;
+    // Getters y Setters
+    public String getMensaje() {
+        return mensaje;
     }
 
-    public int getId() {
-        return id;
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public List<Reserva> getClaseHorarios() {
+        return claseHorarios;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public void setClaseHorarios(List<Reserva> claseHorarios) {
+        this.claseHorarios = claseHorarios;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
-    public int getMax_participantes() {
-        return max_participantes;
-    }
+    // Clase interna Reserva/Clase
+    public static class Reserva {
+        private int id;
+        private String fechaClase;
+        private String horaClase;
+        private String diaClase;
+        private int maxParticipantes;
+        private int reservasHechas;
+        private int lugaresDisponibles;
+        private int claseId;
+        private String descripcionClase;
 
-    public void setMax_participantes(int max_participantes) {
-        this.max_participantes = max_participantes;
-    }
+        // Getters y Setters
+        public int getId() {
+            return id;
+        }
 
-    public String getDia() {
-        return dia;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public void setDia(String dia) {
-        this.dia = dia;
-    }
+        public String getFechaClase() {
+            return fechaClase;
+        }
 
-    public String getHora() {
-        return hora;
-    }
+        public void setFechaClase(String fechaClase) {
+            this.fechaClase = fechaClase;
+        }
 
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
+        public String getHoraClase() {
+            return horaClase;
+        }
 
-    public String getFecha() {
-        return fecha;
-    }
+        public void setHoraClase(String horaClase) {
+            this.horaClase = horaClase;
+        }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
+        public String getDiaClase() {
+            return diaClase;
+        }
 
-    public boolean isEstado() {
-        return estado;
-    }
+        public void setDiaClase(String diaClase) {
+            this.diaClase = diaClase;
+        }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
+        public int getMaxParticipantes() {
+            return maxParticipantes;
+        }
 
-    public boolean isCerrado() {
-        return cerrado;
-    }
+        public void setMaxParticipantes(int maxParticipantes) {
+            this.maxParticipantes = maxParticipantes;
+        }
 
-    public void setCerrado(boolean cerrado) {
-        this.cerrado = cerrado;
+        public int getReservasHechas() {
+            return reservasHechas;
+        }
+
+        public void setReservasHechas(int reservasHechas) {
+            this.reservasHechas = reservasHechas;
+        }
+
+        public int getLugaresDisponibles() {
+            return lugaresDisponibles;
+        }
+
+        public void setLugaresDisponibles(int lugaresDisponibles) {
+            this.lugaresDisponibles = lugaresDisponibles;
+        }
+
+        public int getClaseId() {
+            return claseId;
+        }
+
+        public void setClaseId(int claseId) {
+            this.claseId = claseId;
+        }
+
+        public String getDescripcionClase() {
+            return descripcionClase;
+        }
+
+        public void setDescripcionClase(String descripcionClase) {
+            this.descripcionClase = descripcionClase;
+        }
     }
 }

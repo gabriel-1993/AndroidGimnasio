@@ -8,15 +8,24 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
+import com.gabrielt.f21.model.CancelarReservaView;
+import com.gabrielt.f21.model.ConfirmarNuevaReservaView;
+import com.gabrielt.f21.model.CuotaActualView;
 import com.gabrielt.f21.model.MisCreditosView;
 import com.gabrielt.f21.model.MisReservasView;
+import com.gabrielt.f21.model.NovedadView;
+import com.gabrielt.f21.model.NuevaReservaView;
+import com.gabrielt.f21.model.ProximaReservaView;
 import com.gabrielt.f21.model.Usuario;
 import com.gabrielt.f21.model.UsuarioPerfilView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.List;
+
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -29,9 +38,9 @@ import retrofit2.http.Part;
 public class ApiClient {
 
     // JD:
-    //public static final String URLBASE = "http://192.168.0.11:5001/api/";
+    public static final String URLBASE = "http://192.168.0.11:5001/api/";
     //Ger:
-    public static final String URLBASE = "http://192.168.0.20:5001/api/";
+    //public static final String URLBASE = "http://192.168.0.20:5001/api/";
     //LP
     //public static final String URLBASE = "http://192.168.1.4:5001/api/";
 
@@ -72,6 +81,7 @@ public class ApiClient {
 
     public interface F21Service {
 
+        //USUARIO
         @FormUrlEncoded
         @POST("usuarios/registrarse")
         Call<String> registrarse(
@@ -89,6 +99,10 @@ public class ApiClient {
                 @Field("Email") String email,
                 @Field("Pass") String pass
         );
+
+        @FormUrlEncoded
+        @POST("usuarios/restablecer-clave")
+        Call<String> restablecerClave(@Field("email") String email);
 
         @GET("usuarios/get-perfil")
         Call<Usuario> getPerfilUsuario(@Header("Authorization") String token);
@@ -122,18 +136,48 @@ public class ApiClient {
         );
 
 
-        //Mis creditos : consultar cuotas con id del token
-        // y reservas que no esten canceladas para calcular creditos usados.
+        //Mis creditos/cuota
+        //consultar todas las cuotas con los creditos y reservas que no esten canceladas, para calcular creditos usados.
         @GET("cuotas/obtener-cuotas")
         Call<MisCreditosView> misCreditos(@Header("Authorization") String token);
 
+
+        //Al iniciar app: verificar si tiene cuota en curso o esta vencida.
+        //En curso, se muestra en inicio creditos disponibles y vencimiento.
+        //Vencida, setea creditos disponibles en 0 y en inicio se avisa que no hay creditos.
+        @GET("cuotas/obtener-cuota-actual")
+        Call<CuotaActualView> obtenerCuotaActual(@Header("Authorization") String token);
+
+
+        //Mis reservas
         //Mis reservas : obtener todas las reservas del usuario logeado
         @GET("reservas/obtener-reservas")
         Call<MisReservasView> obtenerReservas(@Header("Authorization") String token);
 
+        //proxima reserva para mostrar en inicio
+        @GET("reservas/proxima-reserva")
+        Call<ProximaReservaView> obtenerProximaReserva(@Header("Authorization") String token);
 
+        @GET("reservas/obtener-lista-nueva-reserva")
+        Call<NuevaReservaView> obtenerListaNuevaReserva(@Header("Authorization") String token);
 
+        //crear reserva
+        @FormUrlEncoded
+        @POST("reservas/nueva-reserva")
+        Call<ConfirmarNuevaReservaView> nuevaReserva(
+                @Header("Authorization") String token,
+                @Field("ClaseHorarioId") int claseHorarioId
+        );
 
+        @POST("reservas/cancelar-reserva")
+        @FormUrlEncoded
+        Call<CancelarReservaView> cancelarReserva(
+                @Header("Authorization") String authorization,
+                @Field("ReservaId") int reservaId
+        );
+
+        @GET("novedades/get-novedades")
+        Call<List<NovedadView>> getNovedades();
 
     }
 }
