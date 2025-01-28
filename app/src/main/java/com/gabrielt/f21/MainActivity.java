@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.gabrielt.f21.model.Usuario;
 import com.gabrielt.f21.ui.iniciarsesion.IniciarSesionActivity;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,14 +61,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.navView.setNavigationItemSelectedListener(item -> {
-            int id = item.getItemId();
-            if (id == R.id.nav_cerrar_sesion) {
-                cerrarSesion();
-                return true;
-            }
-            return false;
-        });
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -117,6 +112,28 @@ public class MainActivity extends AppCompatActivity {
         vm.recuperarDatosUsuarioToken();
 
 
+        MenuItem navHomeItem = navigationView.getMenu().findItem(R.id.nav_cerrar_sesion);
+
+        navHomeItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                new MaterialAlertDialogBuilder(MainActivity.this)
+                        .setTitle("Cerrar sesión")
+                        .setMessage("¿Estás seguro de que deseas cerrar sesión?")
+                        .setNegativeButton("Cancelar", (dialog, which) -> {
+                            dialog.dismiss();
+                        })
+                        .setPositiveButton("Aceptar", (dialog, which) -> {
+                            Intent intent = new Intent(MainActivity.this, IniciarSesionActivity.class);
+                            startActivity(intent);
+                            finish();
+                        })
+                        .show();
+                return false;
+            }
+        });
+
+
         // Listener para cuando se abre el menú
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -158,33 +175,6 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-
-    public void cerrarSesion() {
-        new AlertDialog.Builder(this)
-                .setMessage("¿Estás seguro de querer salir de la app?")
-                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Limpiar datos de sesión (si es necesario)
-                        SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
-                        preferences.edit().clear().apply();
-
-                        // Redirigir a la actividad de inicio de sesión
-                        Intent intent = new Intent(MainActivity.this, IniciarSesionActivity.class);
-                        startActivity(intent);
-
-                        // Finalizar la actividad actual
-                        finishAffinity();
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .show();
-    }
 
 
 

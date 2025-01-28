@@ -19,7 +19,11 @@ import com.gabrielt.f21.model.NuevaReservaView;
 import com.gabrielt.f21.request.ApiClient;
 import com.gabrielt.f21.ui.perfil.PerfilViewModel;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,16 +52,47 @@ public class NuevaReservaAdapter extends RecyclerView.Adapter<NuevaReservaAdapte
         return new ViewHolderNuevaReserva(view);
     }
 
+
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolderNuevaReserva holder, int position) {
+        /*
         NuevaReservaView.Reserva reserva = reservaLista.get(position);
 
         // Setear los datos en las vistas
         holder.tvClaseDescripcion.setText(reserva.getDescripcionClase());
         holder.tvLugaresDisponibles.setText("Disponibles: " + reserva.getLugaresDisponibles());
         holder.tvFecha.setText(fechaConverter.convertirFechaLegibleCorta(reserva.getFechaClase()+ "T00:00:00"));
-        Log.d("59", reserva.getFechaClase());
+        Log.d("59 fecha", reserva.getFechaClase());
+        Log.d("60 dia", reserva.getDiaClase());
+
         holder.tvDia.setText(reserva.getDiaClase());
+        holder.tvHora.setText(fechaConverter.formatearHoraSinSegundos(reserva.getHoraClase()));
+
+        // Manejar el clic en la card
+        holder.itemView.setOnClickListener(view -> {
+            mostrarDialogoConfirmacion(view.getContext(), reserva);
+        });
+        */
+
+        NuevaReservaView.Reserva reserva = reservaLista.get(position);
+
+        // Setear los datos en las vistas
+        holder.tvClaseDescripcion.setText(reserva.getDescripcionClase());
+        holder.tvLugaresDisponibles.setText("Disponibles: " + reserva.getLugaresDisponibles());
+        holder.tvFecha.setText(fechaConverter.convertirFechaLegibleCorta(reserva.getFechaClase() + "T00:00:00"));
+        Log.d("59 fecha", reserva.getFechaClase());
+
+        // Convertir la fecha a día de la semana
+        String diaSemana = "Desconocido";
+        if (reserva.getFechaClase() != null && !reserva.getFechaClase().isEmpty()) {
+            LocalDate localDate = LocalDate.parse(reserva.getFechaClase());
+            DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+            diaSemana = dayOfWeek.getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
+        }
+
+        Log.d("60 dia", diaSemana);
+        holder.tvDia.setText(diaSemana);
         holder.tvHora.setText(fechaConverter.formatearHoraSinSegundos(reserva.getHoraClase()));
 
         // Manejar el clic en la card
