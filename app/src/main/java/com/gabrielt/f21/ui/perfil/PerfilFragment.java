@@ -70,11 +70,11 @@ public class PerfilFragment extends Fragment {
                 //binding.ivPerfilModificar.setImageResource(R.drawable.ic_launcher_background);
                 Glide.with(getContext())
                         //lp
-                        //.load("http://192.168.1.4:5001"+usuario.getAvatar())
+                        .load("http://192.168.1.4:5001"+usuario.getAvatar())
                         //ger
                         //.load("http://192.168.0.20:5001"+usuario.getAvatar())
                         //jd
-                        .load("http://192.168.0.11:5001"+usuario.getAvatar())
+                        //.load("http://192.168.0.11:5001"+usuario.getAvatar())
                         .placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.sinfoto)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)

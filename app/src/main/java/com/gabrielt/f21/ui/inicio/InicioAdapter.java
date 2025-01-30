@@ -54,7 +54,7 @@ public class InicioAdapter extends RecyclerView.Adapter<InicioAdapter.ViewHolder
             Log.d("fotito", "url: "+ novedad.getUrl_Imagen());
             // Cargar la imagen con Glide
             Glide.with(holder.itemView.getContext())
-                    .load("http://192.168.0.20:5001"+novedad.getUrl_Imagen()) // URL de la imagen
+                    .load("http://192.168.1.4:5001"+novedad.getUrl_Imagen()) // URL de la imagen
                     .placeholder(R.drawable.rayo_amarillo_intermedio) // Imagen mientras se carga
                     .error(R.drawable.mis_creditos_icono) // Imagen en caso de error
                     .into(holder.iv_foto_novedad); // ImageView donde se cargará la imagen
