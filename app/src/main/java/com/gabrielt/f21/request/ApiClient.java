@@ -40,9 +40,9 @@ public class ApiClient {
     // JD:
     //public static final String URLBASE = "http://192.168.0.11:5001/api/";
     //Ger:
-    //public static final String URLBASE = "http://192.168.0.20:5001/api/";
+    //public static final String URLBASE = "http://192.168.0.2:5001/api/";
     //LP
-    public static final String URLBASE = "http://192.168.1.4:5001/api/";
+    public static final String URLBASE = "http://192.168.1.3:5001/api/";
 
     private static SharedPreferences sp;
 

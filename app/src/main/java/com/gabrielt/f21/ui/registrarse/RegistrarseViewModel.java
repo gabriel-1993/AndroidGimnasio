@@ -29,6 +29,15 @@ public class RegistrarseViewModel extends AndroidViewModel {
     private MutableLiveData<String> mMsjToast;
     FechaConverter fechaConverter;
 
+    private MutableLiveData<Boolean> mLimpiarCampos;
+
+    public MutableLiveData<Boolean> getmLimpiarCampos() {
+        if(mLimpiarCampos==null){
+            mLimpiarCampos = new MutableLiveData<>();
+        }
+        return mLimpiarCampos;
+    }
+
     public MutableLiveData<String> getmMsjToast() {
         if(mMsjToast == null){
             mMsjToast =  new MutableLiveData<String>();
@@ -98,6 +107,8 @@ public class RegistrarseViewModel extends AndroidViewModel {
                 if (response.isSuccessful()) {
                     // La respuesta fue exitosa (200 OK)
                     mMsjToast.postValue("Cuenta creada con éxito.");
+                    mLimpiarCampos.postValue(true); // Notificar a la Activity para limpiar los campos
+
                 } else {
                     try {
                         // Extraer el mensaje de error enviado por el servidor

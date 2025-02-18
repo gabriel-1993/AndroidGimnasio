@@ -97,9 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
                 // Carga la imagen del propietario
                 Glide.with(MainActivity.this)
-                        //.load("http://192.168.0.5:5001" + usuario.getAvatar())
+                        //Ger
+                        //.load("http://192.168.0.2:5001" + usuario.getAvatar())
                         //LP
-                        .load("http://192.168.1.4:5001" + usuario.getAvatar())
+                        .load("http://192.168.1.3:5001" + usuario.getAvatar())
                         //JustoDaract
                         //.load("http://192.168.0.11:5001" + usuario.getAvatar())
                         .diskCacheStrategy(DiskCacheStrategy.ALL)

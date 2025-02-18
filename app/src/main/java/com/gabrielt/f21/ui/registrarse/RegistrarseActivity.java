@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -70,6 +71,24 @@ public class RegistrarseActivity extends AppCompatActivity {
                 Toast.makeText(getApplication(), msj, Toast.LENGTH_LONG).show();
             }
         });
+
+        vm.getmLimpiarCampos().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean limpiar) {
+                if (limpiar) {
+                    binding.etRegistrarseFechaNacimiento.setText("");
+                    binding.etRegistrarseNombre.setText("");
+                    binding.etRegistrarseApellido.setText("");
+                    binding.etRegistrarseEmail.setText("");
+                    binding.etRegistrarseTelefono.setText("");
+                    binding.etRegistrarsePassword.setText("");
+                    binding.etRegistrarseConfirmPassword.setText("");
+
+                    vm.getmLimpiarCampos().setValue(false); // Reiniciar el estado para futuras observaciones
+                }
+            }
+        });
+
     }
 
     //mostrar calendario
